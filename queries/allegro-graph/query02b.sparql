@@ -1,0 +1,29 @@
+# View graphs with included triples - returns all triples
+
+# This PREFIX causes the default graph of the dataset to include
+# only triples that are not in a named graph.
+# Otherwise, the default graph will include every triple.
+PREFIX franzOption_defaultDatasetBehavior: <franz:rdf>
+
+SELECT ?s ?p ?o ?g {
+  # default graph
+  { ?s ?p ?o . }
+  UNION
+  # named graphs
+  { GRAPH ?g { ?s ?p ?o . }  }
+}
+
+#   RESULTS:
+#   s   p               o           g
+#   4 	skos:prefLabel 	"label2"
+#   3 	skos:narrower 	4
+#   1 	skos:narrower 	2 	        graph1#
+#   3 	skos:prefLabel 	"label" 	graph1#
+#   2 	skos:narrower 	3 	        graph2#
+#   4 	skos:prefLabel 	"label" 	graph2#
+
+# COMMENT:
+# Option franzOption_defaultDatasetBehavior: <franz:rdf> changes default behavior
+# related with the scope of default graph: only triples not belonging to any named
+# graph will be trated as belonging to default graph.
+# More info: https://franz.com/agraph/support/documentation/current/sparql-reference.html#sparql-queryoptions
