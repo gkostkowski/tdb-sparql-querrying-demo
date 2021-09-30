@@ -1,0 +1,21 @@
+# Match pattern involving two graphs
+SELECT ?s ?n1 ?n2 ?label
+FROM <http://graph1#>
+FROM <http://graph2#>
+WHERE {
+  {
+    ?s <http://www.w3.org/2004/02/skos/core#narrower> ?n1 .
+    ?n1 <http://www.w3.org/2004/02/skos/core#narrower> ?n2 .
+    ?n2 <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+  }
+}
+
+#   RESULTS:
+#   s   n1  n2  label
+#   1 	2 	3 	"label"
+
+# COMMENT:
+# Here we use the fact that after forming default graph, it can be queried
+# as if it was a single graph. Note that part of pattern
+# (?n1 <http://www.w3.org/2004/02/skos/core#narrower> ?n2 .) is matches
+# data present in graph2.

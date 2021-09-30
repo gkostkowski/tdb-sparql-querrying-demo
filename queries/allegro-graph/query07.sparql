@@ -1,0 +1,21 @@
+# View data from two graphs, using FROM NAMED clause
+SELECT ?s ?p ?o
+FROM NAMED <http://graph1#>
+FROM NAMED <http://graph2#>
+WHERE {
+  GRAPH ?g { ?s ?p ?o . }
+}
+
+#   RESULTS:
+#   s   p               o
+#   1 	skos:narrower 	2
+#   3 	skos:prefLabel 	"label"
+#   2 	skos:narrower 	3
+#   4 	skos:prefLabel 	"label"
+
+# COMMENT:
+# Gives same results as query04, but differs in term of querying mechanizm.
+# When using FROM NAMED, we must provide pattern to match and explicitly
+# specify which graph it refers to. In these case variable ?g receives
+# value of any named graph, in that case <http://graph1#> and <http://graph2#>.
+# query08 provides more intuitive example what is the purpose of FROM NAMED.

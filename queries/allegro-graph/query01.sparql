@@ -1,0 +1,22 @@
+# View all triples
+SELECT ?s ?p ?o
+WHERE {
+  { ?s ?p ?o . }
+}
+
+#   RESULTS:
+#
+#   s	p				o
+#   1 	skos:narrower 	2
+#   3 	skos:prefLabel 	"label"
+#   2 	skos:narrower 	3
+#   4 	skos:prefLabel 	"label"
+#   3 	skos:narrower 	4
+#   4 	skos:prefLabel 	"label2"
+
+# COMMENT:
+# Retrieves triples from all graphs:
+# two named and one default
+# (note that this is the opposite behavior to the Jena Fuseki
+# which excludes graphs by default while Allegro Graph includes
+# them)

@@ -1,0 +1,24 @@
+# View data from two remote datasets a (a.nt) and b (b.nt)
+SELECT ?s ?p ?o
+WHERE {
+  {
+    SERVICE <http://localhost:3030/a/query> {
+    	?s ?p ?o .
+  	}
+  } UNION
+  {
+  	SERVICE <http://localhost:3030/b/query> {
+    	?s ?p ?o .
+  	}
+  }
+}
+
+#   RESULTS:
+#   s	                    p	                                            o
+<http://example.com/1>      <http://www.w3.org/2004/02/skos/core#narrower>  <http://example.com/2>
+<http://example.com/3>      <http://www.w3.org/2004/02/skos/core#prefLabel> "label"@en
+<http://example-second.com/4>       <http://www.w3.org/2004/02/skos/core#prefLabel> "label"@en
+<http://example.com/2>      <http://www.w3.org/2004/02/skos/core#narrower>  <http://example.com/3>
+
+# COMMENT:
+# Federated query returning content of default graphs from two datasets: a and b

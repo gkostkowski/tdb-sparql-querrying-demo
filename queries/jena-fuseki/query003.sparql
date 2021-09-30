@@ -1,0 +1,19 @@
+# Try to match non-cross pattern, using federated query
+SELECT ?s ?n1 ?n2 ?label
+WHERE {
+  VALUES ?srv { <http://jena_fuseki_lod:3030/a/query> <http://jena_fuseki_lod:3030/b/query> }
+  SERVICE ?srv {
+    ?s <http://www.w3.org/2004/02/skos/core#narrower> ?n1 .
+    ?n2 <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+  }
+}
+
+#   RESULTS:
+#   s   n1  n2  label
+#   2 	3 	4 	"label"
+#   1 	2 	3 	"label"
+
+# COMMENT:
+# Similar to query002, but requested graph pattern can be matched entirely
+# in the "scope" of certain datasets: first row shows a match from dataset 'b',
+# second row from the dataset 'a'.

@@ -1,0 +1,22 @@
+# View data from remote sparql server
+SELECT ?s ?o
+WHERE {
+
+  SERVICE <https://dbpedia.org/sparql> {
+    ?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .
+  }
+}
+limit 10
+
+#   RESULTS:
+#   s                                                                       o
+#   Category:14th-century_Roman_Catholic_archbishops_in_the_Middle_East 	"14th-century Roman Catholic archbishops in the Middle East"
+#   Category:1500_metres_at_the_World_Junior_Championships_in_Athletics 	"1500 metres at the World Junior Championships in Athletics"
+#   Category:1733_disestablishments_in_the_French_colonial_empire 	"1733 disestablishments in the French colonial empire"
+#   Category:1768_establishments_in_the_Polish-Lithuanian_Commonwealth 	"1768 establishments in the Polish-Lithuanian Commonwealth"
+#   Category:1770s_establishments_in_the_Province_of_Quebec_(1763-1791) 	"1770s establishments in the Province of Quebec (1763-1791)"
+#   Category:11th-century_establishments_in_the_Abbasid_Caliphate 	"11th-century establishments in the Abbasid Caliphate"
+#   Category:1606_establishments_in_the_Polish–Lithuanian_Commonwealth 	"1606 establishments in the Polish–Lithuanian Commonwealth"
+#   Category:1740s_establishments_in_the_Polish-Lithuanian_Commonwealth 	"1740s establishments in the Polish-Lithuanian Commonwealth"
+#   Category:11th-century_Roman_Catholic_church_buildings_in_Germany 	"11th-century Roman Catholic church buildings in Germany"
+#   Category:14th-century_establishments_in_the_Holy_Roman_Empire 	"14th-century establishments in the Holy Roman Empire"

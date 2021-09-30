@@ -1,0 +1,16 @@
+# View graphs with included triples
+SELECT ?g ?s ?p ?o
+WHERE {
+  GRAPH ?g { ?s ?p ?o . }
+}
+
+#   RESULTS:
+#   g           s   p               o
+#   graph1# 	1 	skos:narrower 	2
+#   graph1# 	3 	skos:prefLabel 	"label"
+#   graph2# 	2 	skos:narrower 	3
+#   graph2# 	4 	skos:prefLabel 	"label"
+
+# COMMENT:
+# Note that this time it returns only triples from named
+# graphs (as requested)

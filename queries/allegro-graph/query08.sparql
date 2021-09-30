@@ -1,0 +1,29 @@
+# View different kind of data from two graphs, using FROM NAMED clause
+SELECT ?s ?p ?o
+FROM NAMED <http://graph1#>
+FROM NAMED <http://graph2#>
+WHERE {
+  {
+    GRAPH <http://graph1#> {
+      BIND(<http://www.w3.org/2004/02/skos/core#prefLabel> AS ?p) .
+      ?s ?p ?o .
+  	}
+  } UNION
+  {
+    GRAPH <http://graph2#> {
+      BIND(<http://www.w3.org/2004/02/skos/core#narrower> AS ?p) .
+      ?s ?p ?o .
+    }
+  }
+}
+
+#   RESULTS:
+#   s   p               o
+#   3 	skos:prefLabel 	"label"
+#   2 	skos:narrower 	3
+
+# COMMENT:
+# This example clearly shows the difference in purpose of FROM NAMED, in
+# comparision to FROM. While FROM is used to specify range of data to query
+# in terms of default graph (no additional graph clauses needed), this FROM NAMED
+# clause is used to make passible to apply different patterns to various graphs.

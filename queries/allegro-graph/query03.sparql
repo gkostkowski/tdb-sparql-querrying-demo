@@ -1,0 +1,24 @@
+# View graph1 triples only
+SELECT ?s ?p ?o
+FROM <http://graph1#>
+WHERE {
+  { ?s ?p ?o . }
+}
+
+#   RESULTS:
+#   s   p               o
+#   3 	skos:prefLabel 	"label"
+#   1 	skos:narrower 	2
+
+# COMMENT:
+# FROM is used to specify graph(s) which WILL BE INCLUDED IN DEFAULT GRAPH.
+# But there is one catch: In query01 we can see that all graphs (two named and
+# one unnamed a.k.a. default) have been included in the scope of default graph.
+# It's because by default, if user didn't specify otherwise, all graphs are
+# included in the scope of default graph. But this time we override this default
+# behavior by specifying graph1 and that's why we get only triples from these
+# graph as graph1 was used as a scope of default graph.
+# We use phrase "scope of default graph" because despite
+# graph1 was actually specified in FROM clause, we didn't use it anywhere in
+# graph pattern (in WHERE). Keep in mind that any pattern in WHERE which is
+# not used together with GRAPH clause, will always refer to the default graph.

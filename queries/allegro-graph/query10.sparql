@@ -1,0 +1,9 @@
+# View data from Apache Jena Fuseki repository
+SELECT ?s ?o
+WHERE {
+
+  SERVICE <http://jena_fuseki_lod:3030/a/query> {
+    ?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .
+  }
+}
+limit 10

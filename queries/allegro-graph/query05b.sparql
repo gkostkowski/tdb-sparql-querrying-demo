@@ -1,0 +1,17 @@
+# Match pattern involving all graphs (implicitly)
+SELECT ?s ?n1 ?n2 ?label
+WHERE {
+  {
+    ?s <http://www.w3.org/2004/02/skos/core#narrower> ?n1 .
+    ?n1 <http://www.w3.org/2004/02/skos/core#narrower> ?n2 .
+    ?n2 <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+  }
+}
+
+#   RESULTS:
+#   s   n1  n2  label
+#   1 	2 	3 	"label"
+
+# COMMENT:
+# Same as query05, except the fact that default graph is built implicitly
+# (as described in the comment to the query03).

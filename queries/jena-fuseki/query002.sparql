@@ -1,0 +1,20 @@
+# Try to match cross pattern, just like in case of graphs in query05, using federated query
+SELECT ?s ?n1 ?n2 ?label
+WHERE {
+  VALUES ?srv { <http://jena_fuseki_lod:3030/a/query> <http://jena_fuseki_lod:3030/b/query> }
+  SERVICE ?srv {
+    ?s <http://www.w3.org/2004/02/skos/core#narrower> ?n1 .
+    ?n1 <http://www.w3.org/2004/02/skos/core#narrower> ?n2 .
+    ?n2 <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+  }
+}
+
+# RESULTS:
+# None
+
+# COMMENT:
+# Note that altough it is a valid syntax, such pattern won't match same
+# data as in query05 (dataset a and b holds same data as graph1 and graph2 in
+# allegro graph, respectively). It is because this data are placed in different
+# datasets and sparql engine don't know how to perform such matching between
+# two datasets; note that data are physically located in different places.

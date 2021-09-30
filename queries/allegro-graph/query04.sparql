@@ -1,0 +1,19 @@
+# View graph1 and graph2 triples
+SELECT ?s ?p ?o
+FROM <http://graph1#>
+FROM <http://graph2#>
+WHERE {
+  { ?s ?p ?o . }
+}
+
+#   RESULTS:
+#   s   p               o
+#   1 	skos:narrower 	2
+#   3 	skos:prefLabel 	"label"
+#   2 	skos:narrower 	3
+#   4 	skos:prefLabel 	"label"
+
+# COMMENT:
+# Similar to query03, this time we included two graphs in the scope of default
+# graph. Note that multiple FROM clauses causes that content of these graph
+# is treated together (like in case of UNION clause).

@@ -1,0 +1,2 @@
+<http://example.com/3> <http://www.w3.org/2004/02/skos/core#narrower> <http://example.com/4> .
+<http://example-second.com/4> <http://www.w3.org/2004/02/skos/core#prefLabel> "label2"@en .

@@ -1,0 +1,16 @@
+# Match pattern from query05, involving only one graph
+SELECT ?s ?n1 ?n2 ?label
+FROM <http://graph1#>
+WHERE {
+  {
+    ?s <http://www.w3.org/2004/02/skos/core#narrower> ?n1 .
+    ?n1 <http://www.w3.org/2004/02/skos/core#narrower> ?n2 .
+    ?n2 <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+  }
+}
+
+#   RESULTS:
+#   None
+
+# COMMENT:
+# Just to prove that excluding graph2 wil cause that nothing will be matched.

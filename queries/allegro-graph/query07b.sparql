@@ -1,0 +1,18 @@
+# View data from two graphs, using FROM NAMED clause
+SELECT ?s ?p ?o
+FROM NAMED <http://graph1#>
+FROM NAMED <http://graph2#>
+WHERE {
+  VALUES ?g { <http://graph1#> <http://graph2#> }
+  GRAPH ?g { ?s ?p ?o . }
+}
+
+#   RESULTS:
+#   s   p               o
+#   1 	skos:narrower 	2
+#   3 	skos:prefLabel 	"label"
+#   2 	skos:narrower 	3
+#   4 	skos:prefLabel 	"label"
+
+# COMMENT:
+# Same as query07, explicitly defining possible values for ?g.
