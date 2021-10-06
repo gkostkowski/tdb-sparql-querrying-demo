@@ -1,0 +1,8 @@
+SELECT ?concept1 ?concept3
+WHERE
+{ 
+    ?concept1 ?r1 ?concept2 .
+    ?concept2 ?r2 ?concept3 .
+    FILTER( ?concept1 != ?concept3 )
+}
+limit 10

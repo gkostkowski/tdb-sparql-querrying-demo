@@ -1,0 +1,12 @@
+SELECT DISTINCT (GROUP_CONCAT(?concept; SEPARATOR='\t') AS ?rel_concepts)  
+WHERE { 
+SELECT ?concept ?lbl1 ?lbl2  
+WHERE { 
+?concept <http://www.w3.org/2004/02/skos/core#prefLabel> ?lbl1 . 
+?concept <http://www.w3.org/2004/02/skos/core#prefLabel> ?lbl2 . 
+FILTER ( ?lbl1 != ?lbl2 ) . 
+} 
+ 
+} 
+GROUP BY ?lbl1 ?lbl2 
+HAVING(COUNT( ?concept ) >= "2"^^<http://www.w3.org/2001/XMLSchema#integer>)

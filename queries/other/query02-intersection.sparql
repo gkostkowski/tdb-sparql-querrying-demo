@@ -1,0 +1,23 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX plwn: <http://plwordnet.pwr.wroc.pl/wordnet/synset/>
+
+# is this default intersection something like merging graphs from patterns into
+# single graph?
+SELECT ?c ?c2 ?c3
+{
+  BIND (plwn:82272 as ?c)
+  # each nested curly braces represents different graph pattern
+  # note: if you only use same variable name, then such variable in
+  # inner and outer pattern will be shared ("correlated" like in sql)
+  # shared variable is used when joining these patterns
+  {
+    ?c skos:broader ?c2 .
+  }
+  # when there is nothing it mean intersection of graph patterns
+  # sparql does intersection by default
+  # intersection of patterns: returns rows that match first pattern AND second pattern
+  {
+    ?c skos:narrower ?c3 .
+  }
+}

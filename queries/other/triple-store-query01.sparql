@@ -1,0 +1,18 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT  ?s
+WHERE
+{
+    {
+        GRAPH <http://www.eionet.europa.eu/gemet/concept/> 
+        {
+            ?s skos:prefLabel "wojna"@pl
+        }
+    } 
+    UNION 
+    {
+        GRAPH <http://eurovoc.europa.eu/>
+        {
+            ?s skos:prefLabel "wojna"@pl
+        } 
+    }
+}

@@ -1,0 +1,13 @@
+# alternative version with using FROM NAMED
+
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT  ?g ?s
+FROM NAMED <http://www.eionet.europa.eu/gemet/concept/> 
+FROM NAMED <http://eurovoc.europa.eu/>
+WHERE
+{
+  GRAPH ?g
+  {
+    ?s skos:prefLabel "wojna"@pl
+  }
+}

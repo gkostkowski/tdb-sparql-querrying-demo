@@ -1,0 +1,14 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT 
+  ?s ?r1 ?o1 ?o11 ?r2 ?o2 ?r3 ?o3
+
+WHERE {
+  BIND(skos:broader AS ?r1)
+  BIND(skos:prefLabel AS ?r2)
+  BIND(owl:sameAs AS ?r3)
+  ?s ?r1 ?o1 .
+  ?o1 ?r1 ?o11 .
+  ?s ?r2 ?o2 .
+  ?s ?r3 ?o3 .
+} LIMIT 50000

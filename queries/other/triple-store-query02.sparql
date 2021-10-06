@@ -1,0 +1,19 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT  ?s ?label
+WHERE
+{
+    {
+        GRAPH <http://www.eionet.europa.eu/gemet/concept/> 
+        {
+            ?s skos:prefLabel ?label
+        }
+    } 
+    UNION 
+    {
+        GRAPH <http://eurovoc.europa.eu/>
+        {
+            ?s skos:prefLabel ?label
+        } 
+    }
+}
+LIMIT 5

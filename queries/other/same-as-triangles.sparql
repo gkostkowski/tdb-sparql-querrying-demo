@@ -1,0 +1,10 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+SELECT DISTINCT ?label (lang(?label) as ?language)
+WHERE 
+{
+    ?concept skos:prefLabel ?label .
+    ?concept2 skos:prefLabel ?label .
+    ?concept owl:sameAs ?concept2 .
+}
+order by ?label

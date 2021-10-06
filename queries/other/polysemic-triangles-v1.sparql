@@ -1,0 +1,13 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+SELECT DISTINCT ?label (lang(?label) as ?language)
+{
+    ?concept skos:prefLabel ?label .
+    ?concept2 skos:prefLabel ?label .
+    ?concept owl:sameAs ?concept2 .
+    ?concept3 skos:prefLabel ?label .
+    FILTER (?concept != ?concept3) .  # potrzebne
+    FILTER (?concept2 != ?concept3) .  # potrzebne
+  	MINUS {?concept3 owl:sameAs ?concept . }
+    MINUS {?concept3 owl:sameAs ?concept2 . }
+}
